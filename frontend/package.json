@@ -36,16 +36,19 @@
     "babel-preset-stage-0": "6.24.1",
     "browser-sync": "2.18.13",
     "npm-run-all": "4.1.2",
+    "postcss-px2rem": "^0.3.0",
     "rollup": "0.52.0",
     "rollup-plugin-babel": "3.0.2",
     "rollup-plugin-commonjs": "8.2.6",
     "rollup-plugin-node-globals": "1.1.0",
     "rollup-plugin-node-resolve": "3.0.0",
+    "rollup-plugin-postcss": "^0.5.5",
     "rollup-plugin-replace": "2.0.0",
     "rollup-plugin-uglify": "2.0.1",
     "rollup-watch": "4.3.1",
     "snazzy": "6.0.0",
-    "standard": "10.0.3"
+    "standard": "10.0.3",
+    "stylus": "^0.54.5"
   },
   "scripts": {
     "prebuild": "npm run std --silent",
