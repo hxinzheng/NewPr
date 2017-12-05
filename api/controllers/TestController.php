@@ -1,6 +1,6 @@
 <?php
 
-class SiteController extends Controller{
+class TestController extends Controller{
 
     public function index(){
         if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
