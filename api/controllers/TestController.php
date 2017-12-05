@@ -4,7 +4,7 @@ use yii\web\Controller;
 use Yii;
 class TestController extends Controller{
 
-    public function index(){
+    public function actionIndex(){
         if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
             var_dump( Yii::$app->wechat->authorizeRequired()->send());
           }else{
