@@ -6,7 +6,7 @@ class TestController extends Controller{
 
     public function actionIndex(){
         if(Yii::$app->wechat->isWechat) {
-            var_dump( Yii::$app->wechat->authorizeRequired()->send());
+            var_dump(456);
           }else{
               echo 123;
           }
