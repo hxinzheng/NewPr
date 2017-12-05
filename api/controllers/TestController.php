@@ -8,7 +8,7 @@ class TestController extends Controller{
         if(Yii::$app->wechat->isWechat) {
             var_dump(456);
           }else{
-              echo 123;
+            echo 123;
           }
         
 
