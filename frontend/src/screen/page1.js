@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 
+import { Button } from 'react-weui'
+import 'weui'
+import 'react-weui/build/packages/react-weui.css'
+
 export default class Page1 extends Component{
 
     state = {
@@ -29,6 +33,7 @@ export default class Page1 extends Component{
                         return <li key={i}>{person.name}</li>
                     })}
                 </ul>
+                <Button>123</Button>
             </div>
         )
 
