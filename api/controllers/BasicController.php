@@ -11,7 +11,7 @@ class BasicController extends Controller{
 
         use EasyWeChat\Foundation\Application;
 
-        $app = new Application(Yii::params->wechat);
+        $this->app = new Application(Yii::params->wechat);
                
     }
 
