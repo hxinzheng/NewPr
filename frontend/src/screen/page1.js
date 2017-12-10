@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 
-import { Button } from 'react-weui'
-import 'weui'
-import 'react-weui/build/packages/react-weui.css'
+import { Button, ButtonArea } from 'react-weui'
 
+import "./a.css"
 export default class Page1 extends Component{
 
     state = {
@@ -27,13 +26,20 @@ export default class Page1 extends Component{
     render(){
         return (
             <div>
-                <h1>welcome</h1>
+                <h1 className="welcome">welcome</h1>
                 <ul>
                     {this.state.list.map( (person, i) => {
                         return <li key={i}>{person.name}</li>
                     })}
                 </ul>
-                <Button>123</Button>
+
+                <div className="resp-box"                
+                >
+                </div>
+
+                <ButtonArea>
+                    <Button type='warn'>123</Button>
+                </ButtonArea>
             </div>
         )
 

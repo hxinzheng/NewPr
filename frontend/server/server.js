@@ -3,6 +3,7 @@ const app = express()
 const path = require("path")
 
 app.use('/', express.static(path.resolve(__dirname, "../build/dev")))
+app.use('/', express.static(path.resolve(__dirname, "../static")))
 app.get("/data", (req,res) => {
     const list = [{name : 'ramroll'}, {name : 'tony'}, {name : "stczar"}]
     res.send(JSON.stringify(list))
