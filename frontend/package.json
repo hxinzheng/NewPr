@@ -4,6 +4,9 @@
   "description": "\"# NewPr\"  git init git add README.md git commit -m \"first commit\" git remote add origin https://github.com/hxinzheng/NewPr.git git push -u origin master test////test abcabdcabdc wm",
   "main": "index.js",
   "scripts": {
+    "dev-server" : "node ./server/server.js",
+    "dev-watch" : "webpack --config ./config/webpack.config.js --watch", 
+    "start" : "npm-run-parallel dev-server dev-watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
