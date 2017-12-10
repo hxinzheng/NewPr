@@ -9,7 +9,7 @@ use Yii;
  */
 class BaseController extends Controller{
 
-    static $app;
+    static $appr;
     public function getWechatApp(){
         if(!self::$app) {
             self::$app = new Application(Yii::app()->params['wechat']);
