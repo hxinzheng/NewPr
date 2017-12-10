@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    [
+      "transform-imports",
+      {
+        "dudys": {
+          "transform": "dudys/lib/Library/${member}",
+          "preventFullImport": true
+        }
+      }
+    ],
+    "transform-decorators-legacy"
+  ]
+}
