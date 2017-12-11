@@ -13,7 +13,7 @@ import Page2 from 'screen/page2'
 export default class App extends Component {
 
     state = {
-        showDevPanel : true 
+        showDevPanel : false 
     }
 
     componentDidMount(){
