@@ -38,7 +38,7 @@ export default class Page1 extends Component{
                 </div>
 
                 <ButtonArea>
-                    <Button type='warn'>123</Button>
+                    <Button onClick={() => location.reload()} type='warn'>取消</Button>
                 </ButtonArea>
             </div>
         )
