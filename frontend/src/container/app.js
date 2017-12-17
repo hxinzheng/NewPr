@@ -1,50 +1,88 @@
-import React, { Component } from 'react'
+import React from 'react'
+import universal from 'react-universal-component'
+import Loading from 'app/component/Loading'
+import NotFound from 'app/component/notfound'
+import { pages, nextIndex, indexFromPath } from './route'
+// import 'weui'
+// import 'react-weui/build/packages/react-weui.css'
+import 'app/stylus/all.styl'
 
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
+const UniversalComponent = universal(props => import(`../screen/${props.page}`), {
+  minDelay: 1200,
+  loading: Loading,
+  error: NotFound
+})
 
-import Page1 from 'screen/page1'
-import Page2 from 'screen/page2'
+export default class App extends React.Component {
+  render() {
+    const { index, done, loading } = this.state
+    const page = pages[index]
 
-export default class App extends Component {
 
-    state = {
-        showDevPanel : false 
+    return (
+      <div>
+        <UniversalComponent
+          page={page}
+          onBefore={this.beforeChange}
+          onAfter={this.afterChange}
+          onError={this.handleError}
+        />
+      </div>
+    )
+  }
+
+  constructor(props) {
+    super(props)
+
+    const { history } = props
+    const index = indexFromPath(history.location.pathname)
+
+    this.state = {
+      index,
+      loading: false,
+      done: false,
+      error: false
     }
 
-    componentDidMount(){
-        window.addEventListener('shake', this.shakeEventDidOccur, false);
-    }
+    history.listen(({ pathname }) => {
+      const index = indexFromPath(pathname)
+      this.setState({ index })
+    })
+  }
 
-    shakeEventDidOccur = () => {
-        this.setState({ showDevPanel: true })
-    }
+  changePage = () => {
+    if (this.state.loading) return
 
-    render() {
-        return (
-            <Router>
-                <Route path='/' >
-                    <div>
-                        {this.state.showDevPanel &&
-                            <DevPanel close={() => {
-                                this.setState({ showDevPanel: false })
-                            }} />
-                        }
-                        <Route exact path="/" component={Page1} />
-                        <Route path="/abc" component={Page2} />
-                    </div>
-                </Route>
-            </Router>
-        )
+    const index = nextIndex(this.state.index)
+    const page = pages[index]
+
+    this.props.history.push(`/${page}`)
+  }
+
+  beforeChange = ({ isSync }) => {
+    if (!isSync) {
+      this.setState({ loading: true, error: false })
     }
+  }
+
+  afterChange = ({ isSync, isServer, isMount }) => {
+    if (!isSync) {
+      this.setState({ loading: false, error: false })
+    }
+    else if (!isServer && !isMount) {
+      this.setState({ done: true, error: false })
+    }
+  }
+
+  handleError = error => {
+    console.log(error)
+    this.setState({ error: true, loading: false })
+  }
+
+  buttonText() {
+    const { loading, error } = this.state
+    if (error) return 'ERROR'
+    return loading ? 'LOADING...' : 'CHANGE PAGE'
+  }
 }
-
-
-const DevPanel = ({close}) => <div className="dev-panel">
-    <div onClick={() => window.location.href=window.location.href}>刷新</div>
-    <div onClick={close}>关闭</div>
-</div>

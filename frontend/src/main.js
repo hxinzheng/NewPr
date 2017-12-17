@@ -1,24 +1,24 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
+import createHistory from 'history/createBrowserHistory'
 import App from "./container/app"
-import 'weui'
-import 'react-weui/build/packages/react-weui.css'
+const history = createHistory()
 
-import 'stylus/all.styl'
-
-const render = Component => {
-    console.log('render')
+const render = App =>
     ReactDOM.render(
         <AppContainer>
-            <Component />
+            <App history={history} />
         </AppContainer>,
-        document.getElementById('app'),
+        document.getElementById('app')
     )
+
+if (process.env.NODE_ENV === 'development' && module.hot) {
+    module.hot.accept('./container/app.js', () => {
+        const App = require('./container/app').default
+        render(App)
+    })
 }
 
 render(App)
-if (module.hot) {
-    module.hot.accept('./container/app', () => { render(App) })
-}

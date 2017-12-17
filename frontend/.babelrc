@@ -1,21 +1,22 @@
 {
   "presets": [
-    ["es2015", { "modules": false }],
+    "es2015",
     "stage-0",
     "react"
   ],
   "plugins": [
-
-    "react-hot-loader/babel",
-    [
-      "transform-imports",
-      {
-        "dudys": {
-          "transform": "dudys/lib/Library/${member}",
-          "preventFullImport": true
-        }
+    "universal-import",
+    ["module-resolver", {
+      "root": ["."],
+      "alias": {
+        "app": "./src"
       }
-    ],
+    }],
     "transform-decorators-legacy"
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    }
+  } 
 }

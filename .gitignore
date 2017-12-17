@@ -1,5 +1,7 @@
 node_modules
 build
+buildClient
+buildServer
 
 yarn.lock
 package-lock.json
